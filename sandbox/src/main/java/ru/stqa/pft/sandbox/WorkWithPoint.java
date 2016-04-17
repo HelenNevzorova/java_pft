@@ -1,3 +1,7 @@
+package ru.stqa.pft.sandbox;
+
+import ru.stqa.pft.sandbox.Point;
+
 public class WorkWithPoint {
 
 	public static void main(String[] args) {
