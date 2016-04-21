@@ -12,6 +12,7 @@ public class ContactHelper extends HelperBase {
     public ContactHelper(FirefoxDriver wd) {
         super(wd);
     }
+
     public void returnToHomePage() {
         click(By.linkText("home page"));
     }
@@ -25,5 +26,22 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
         type(By.name("email"), contactData.getEmail());
+    }
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedGroup() {
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        wd.switchTo().alert().accept();
+    }
+
+    public void selectContactForEditing() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitEditing() {
+        click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
 }
