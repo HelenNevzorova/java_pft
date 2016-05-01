@@ -54,8 +54,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData contactData) {
-        NavigationHelper getNavigationHelper = new NavigationHelper(wd);
-        getNavigationHelper.gotoContactPage();
+        NavigationHelper navigationHelper = new NavigationHelper(wd);
+        navigationHelper.gotoContactPage();
         fillContactData(contactData, true);
         submitContactCreation();
         returnToHomePage();
@@ -63,5 +63,9 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }
