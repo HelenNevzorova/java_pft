@@ -50,6 +50,7 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
         wd.switchTo().alert().accept();
+        contactCache = null;
     }
 
     public void selectContactForEditingById(int id) {
@@ -65,6 +66,7 @@ public class ContactHelper extends HelperBase {
         navigationHelper.contactPage();
         fillContactData(contactData, true);
         submitContactCreation();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -72,6 +74,7 @@ public class ContactHelper extends HelperBase {
         selectContactForEditingById(contact.getId());
         fillContactData(contact, false);
         submitEditing();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -83,8 +86,13 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
@@ -92,10 +100,10 @@ public class ContactHelper extends HelperBase {
             String address = element.findElement(By.xpath(".//td[4]")).getText();
             String email = element.findElement(By.xpath(".//td[5]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData()
+            contactCache.add(new ContactData()
                     .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address).withEmail(email));
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
 
