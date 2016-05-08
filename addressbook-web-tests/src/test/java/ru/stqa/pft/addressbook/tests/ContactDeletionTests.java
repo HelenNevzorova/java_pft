@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.testng.Assert.*;
 
 /**
  * Created by User on 21.04.2016.
@@ -18,8 +17,8 @@ public class ContactDeletionTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().create(new ContactData()
-                    .withFirstName("Elena").withLastName("Nevzorova").withAddress("Earth").withEmail("elena.nevzorova@gmail.com").withGroup("test1"));
+            app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
+                    .withAddress("Earth").withEmail("elena.nevzorova@gmail.com").withGroup("test1"));
         }
     }
 
