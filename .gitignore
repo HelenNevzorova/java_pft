@@ -1,5 +1,8 @@
 .gradle
 build/
+.idea
+*.iml
+out
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -9,7 +12,4 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-.idea/workspace.xml
-sandbox/.idea/uiDesigner.xml
-sandbox/.idea/workspace.xml
-sandbox/.idea/workspace.xml
+
