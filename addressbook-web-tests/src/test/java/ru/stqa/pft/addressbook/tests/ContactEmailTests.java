@@ -13,36 +13,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by User on 08.05.2016.
  */
-public class ContactPhoneTests extends TestBase {
+public class ContactEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().isEmpty()) {
             app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
-                    .withAddress("Earth").withEmail("elena.nevzorova@gmail.com").withGroup("test1")
-                    .withHomePhone("(123)").withMobilePhone("22-22").withWorkPhone("33 33"));
+                    .withAddress("Earth").withGroup("test1")
+                    .withEmail("elena.nevzorova@gmail.com").withEmail2("234@gmail.com").withEmail3("345@gmai.com"));
         }
     }
 
     @Test
-    public void testContactPhones() {
+    public void testContactEmails() {
         app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
     }
 
-    private String mergePhones(ContactData contact) {
-       return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-               .stream().filter((s) -> ! s.equals(""))
-               .map(ContactPhoneTests:: cleaned)
-               .collect(Collectors.joining("\n"));
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
-
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
-    }
-
 }
