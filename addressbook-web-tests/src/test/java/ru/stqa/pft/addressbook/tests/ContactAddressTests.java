@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by User on 08.05.2016.
  */
-public class ContactAddress extends TestBase {
+public class ContactAddressTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
