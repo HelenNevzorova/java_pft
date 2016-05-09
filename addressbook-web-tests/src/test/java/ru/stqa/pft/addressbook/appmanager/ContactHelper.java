@@ -60,6 +60,10 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.xpath(String.format("//a[@href='edit.php?id=%s']", id))).click();
     }
 
+    public void openContactInfoById(int id) {
+        wd.findElement(By.xpath(String.format("//a[@href='view.php?id=%s']", id))).click();
+    }
+
     public void submitEditing() {
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
@@ -123,7 +127,15 @@ public class ContactHelper extends HelperBase {
         String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
-                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-                .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
+                .withAddress(address).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3);
+    }
+
+    public ContactData detailedInfo(ContactData contact) {
+        openContactInfoById(contact.getId());
+        String fullInfo = wd.findElement(By.xpath("//div[@id='content']")).getText();
+        String group = wd.findElement(By.xpath("//i")).getText();
+        return new ContactData().withFullInfo(fullInfo).withGroup(group);
+
     }
 }
