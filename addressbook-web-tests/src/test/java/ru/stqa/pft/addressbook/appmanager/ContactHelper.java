@@ -24,7 +24,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void submitContactCreation() {
-       click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void fillContactData(ContactData contactData, boolean creation) {
@@ -37,9 +37,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("work"), contactData.getWorkPhone());
+        attach(By.name("photo"), contactData.getPhoto());
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
