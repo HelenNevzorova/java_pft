@@ -1,10 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by User on 20.05.2016.
@@ -12,14 +12,24 @@ import java.sql.SQLException;
 public class DbConnectionTest {
 
     @Test
-    public void testDbConnection() {
+    public void testDbConnection (){
         Connection conn = null;
-        try {
-            conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook" +
-                            "?useSSL=false&serverTimezone=UTC?user=root&password=");
 
-            // Do something with the Connection
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test" +
+                    "?useSSL=false&serverTimezone=UTC&user=root&password=");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select group_id, group_name, group_header, group_footer from group_list");
+            Groups groups = new Groups();
+            while (rs.next()) {
+                groups.add(new GroupData().withId(rs.getInt("group_id")).withName(rs.getString("group_name"))
+                        .withHeader(rs.getString("group_header")).withFooter(rs.getString("group_footer")));
+            }
+            rs.close();
+            st.close();
+            conn.close();
+
+            System.out.println(groups);
 
         } catch (SQLException ex) {
             // handle any errors
