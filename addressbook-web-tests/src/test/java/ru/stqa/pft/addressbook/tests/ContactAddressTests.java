@@ -14,8 +14,8 @@ public class ContactAddressTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().homePage();
-        if (app.contact().all().isEmpty()) {
+        if (app.db().contacts().isEmpty()) {
+            app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
                     .withEmail("elena.nevzorova@gmail.com").withGroup("test1")
                     .withAddress("SUITE 5A-1204 799 E DRAGRAM TUCSON AZ 85705 USA"));

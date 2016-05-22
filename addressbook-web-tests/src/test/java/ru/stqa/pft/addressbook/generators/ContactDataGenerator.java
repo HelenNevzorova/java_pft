@@ -87,10 +87,11 @@ public class ContactDataGenerator {
                     .withAddress(String.format("address %s", i))
                     .withEmail(String.format("email_1%s@gmail.com", i))
                     .withEmail2(String.format("email_2%s@gmail.com", i))
-                    .withEmail2(String.format("email_3%s@gmail.com", i))
+                    .withEmail3(String.format("email_3%s@gmail.com", i))
                     .withWorkPhone(String.format("222 222 %s", i))
                     .withMobilePhone(String.format("333-333-%s", i))
-                    .withHomePhone(String.format("(123) 222 %s", i)));
+                    .withHomePhone(String.format("(123) 222 %s", i))
+                    .withGroup("test1"));
         }
         return contacts;
     }

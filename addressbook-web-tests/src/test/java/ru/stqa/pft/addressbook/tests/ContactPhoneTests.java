@@ -17,8 +17,8 @@ public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().homePage();
-        if (app.contact().all().isEmpty()) {
+        if (app.db().contacts().isEmpty()) {
+            app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
                     .withAddress("Earth").withEmail("elena.nevzorova@gmail.com").withGroup("test1")
                     .withHomePhone("(123)").withMobilePhone("22-22").withWorkPhone("33 33"));

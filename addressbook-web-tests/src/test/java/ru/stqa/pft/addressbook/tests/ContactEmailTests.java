@@ -17,8 +17,8 @@ public class ContactEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().homePage();
-        if (app.contact().all().isEmpty()) {
+        if (app.db().contacts().isEmpty()) {
+            app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
                     .withAddress("Earth").withGroup("test1")
                     .withEmail("elena.nevzorova@gmail.com").withEmail2("234@gmail.com").withEmail3("345@gmai.com"));
