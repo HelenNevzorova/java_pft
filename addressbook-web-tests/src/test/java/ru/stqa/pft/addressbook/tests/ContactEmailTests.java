@@ -20,8 +20,9 @@ public class ContactEmailTests extends TestBase {
         if (app.db().contacts().isEmpty()) {
             app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Elena").withLastName("Nevzorova")
-                    .withAddress("Earth").withGroup("test1")
-                    .withEmail("elena.nevzorova@gmail.com").withEmail2("234@gmail.com").withEmail3("345@gmai.com"));
+                    .withEmail("elena@gmail.com").withEmail2("elena2@gmail.com").withEmail3("elena3@gmail.com")
+                    .withHomePhone("(123)").withMobilePhone("22-22").withWorkPhone("33 33").withGroup("test1")
+                    .withAddress("SUITE 5A-1204 799 E DRAGRAM TUCSON AZ 85705 USA"));
         }
     }
 
