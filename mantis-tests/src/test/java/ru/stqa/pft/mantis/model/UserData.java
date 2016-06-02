@@ -1,7 +1,5 @@
 package ru.stqa.pft.mantis.model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 
 /**
@@ -12,20 +10,18 @@ import javax.persistence.*;
 @Table(name = "mantis_user_table")
 public class UserData {
 
+    @Id
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "username")
-    @Type(type = "string")
     private String username;
 
-    @Transient
+    @Column(name = "password")
     private String password;
 
     @Column(name = "email")
-    @Type(type = "string")
     private String email;
-
-    @Id
-    @Column(name = "id")
-    private int id = Integer.MAX_VALUE;
 
     public String getUsername() {
         return username;
@@ -67,9 +63,9 @@ public class UserData {
     @Override
     public String toString() {
         return "UserData{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
