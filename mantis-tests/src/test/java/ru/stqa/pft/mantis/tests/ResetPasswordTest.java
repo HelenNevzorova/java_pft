@@ -19,7 +19,7 @@ import static org.testng.Assert.assertTrue;
  * Created by User on 01.06.2016.
  */
 public class ResetPasswordTest extends TestBase {
-    
+
     @BeforeMethod
     public void startMailSever(){
         app.mail().start();
