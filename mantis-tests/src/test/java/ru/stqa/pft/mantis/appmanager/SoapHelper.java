@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class SoapHelper {
 
     private ApplicationManager app;
+
     public SoapHelper(ApplicationManager app) {
         this.app = app;
     }
