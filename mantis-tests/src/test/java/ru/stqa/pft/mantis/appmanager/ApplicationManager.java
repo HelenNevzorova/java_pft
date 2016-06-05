@@ -27,6 +27,7 @@ public class ApplicationManager {
     private ResetPasswordHelper resetPassword;
     private DbHelper dbHelper;
     private SessionHelper sessionHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -99,6 +100,13 @@ public class ApplicationManager {
             sessionHelper = new SessionHelper(this);
         }
         return sessionHelper;
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 
     public WebDriver getDriver() {
